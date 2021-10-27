@@ -3,7 +3,10 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from requests_html import HTML
+
+import time
 
 PATH = "/home/ahmad/Templates/chrome-driver/chromedriver"
 serv = Service(PATH)
@@ -20,7 +23,17 @@ try:
     html = HTML(html=driver.page_source)
     match = html.find("#row1", first=True)
     words = match.text.split(" ")
-    print(words)
+    inputField = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.ID, "inputfield"))
+    )
+    for word in words:
+        inputField.send_keys(word)
+        inputField.send_keys(Keys.SPACE)
+    timer = driver.find_element(By.ID, "timer")
+    timer = timer.text[2:]
+    timer = int(timer)
+    print(f"{(len(words) * 60) / (60 - timer)} WPM")
+    time.sleep(60)
 except Exception:
     print("An error occured!")
 
