@@ -18,6 +18,8 @@ try:
         EC.presence_of_element_located((By.ID, "row1"))
     )
     driver.implicitly_wait(10)
+    # The line below is essential, it allows the display of the spans containing the
+    # words to type. Without it "driver.page_source" won't be able to capture the spans
     wordsContainer.find_elements(By.TAG_NAME, "span")
     
     html = HTML(html=driver.page_source)
