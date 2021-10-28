@@ -1,6 +1,6 @@
 # Typing Speed Test Using Selenium
 
-This is a program that automates the simple English typing test on ![https://10fastfingers.com/](https://10fastfingers.com/) using ![Selenium](https://www.selenium.dev/).
+This is a program that automates the simple English typing test on [https://10fastfingers.com/](https://10fastfingers.com/) using [Selenium](https://www.selenium.dev/).
 
 The program is for learning purposes only.
 
